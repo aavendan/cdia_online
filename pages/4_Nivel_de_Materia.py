@@ -55,6 +55,7 @@ evolucion = (
 evolucion["Registros"] = evolucion["Registros"].astype(int)
 fig2 = px.bar(evolucion, x="Período", y="Registros",
               color_discrete_sequence=["#1f77b4"],
+              text="Registros",
               labels={"Período": "Período de Ingreso"})
 fig2.update_layout(yaxis=dict(rangemode="tozero"))
 fig2.add_hline(y=evolucion["Registros"].mean(), line_dash="dash", line_color="orange")

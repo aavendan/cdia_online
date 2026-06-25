@@ -29,7 +29,7 @@ df_est = pd.DataFrame(registros)
 # --- Filters ---
 col1, col2, col3 = st.columns([1, 1, 2])
 
-anios = sorted(df_ing["anio"].unique(), reverse=True)
+anios = sorted(df_ing["anio"].unique())
 with col1:
     anio_sel = st.selectbox("Año de ingreso", ["Todos"] + [str(a) for a in anios])
 
@@ -68,6 +68,7 @@ if estudiante_sel != "Todos":
 
 estudiantes_unicos = sorted(df_view["Estudiante"].unique())
 st.metric("Estudiantes encontrados", len(estudiantes_unicos))
+
 
 # Detail view when a specific student is selected
 if estudiante_sel != "Todos":

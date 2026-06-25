@@ -15,7 +15,7 @@ df_ing = cargar_ingreso()
 # --- Filters ---
 col1, col2, col3, col4 = st.columns(4)
 
-anios = sorted(df_ing["anio"].unique(), reverse=True)
+anios = sorted(df_ing["anio"].unique())
 with col1:
     anio_sel = st.selectbox("Año de ingreso", ["Todos"] + [str(a) for a in anios])
 
@@ -36,8 +36,22 @@ if pao_sel != "Todos":
 
 nombres_cohorte = set(df_ing_f["nombre"].unique())
 
+# Calcular estudiantes en la cohorte desde registros.xlsx
+df_reg_cohorte = df.copy()
+if anio_sel != "Todos":
+    df_reg_cohorte = df_reg_cohorte[df_reg_cohorte["anio_ingreso"] == int(anio_sel)]
+if pao_sel != "Todos":
+    df_reg_cohorte = df_reg_cohorte[df_reg_cohorte["periodo_ingreso"] == int(pao_sel)]
+
+estudiantes_cohorte = set()
+for nombres_str in df_reg_cohorte["estudiantes"].dropna():
+    for nombre in nombres_str.split(","):
+        nombre = nombre.strip().upper()
+        if nombre:
+            estudiantes_cohorte.add(nombre)
+
 st.markdown("---")
-st.metric("Estudiantes en la cohorte", len(nombres_cohorte))
+st.metric("Estudiantes en la cohorte", len(estudiantes_cohorte))
 
 # Build registros for the cohort
 registros = []

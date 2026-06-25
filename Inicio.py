@@ -16,10 +16,10 @@ st.markdown(
     Esta aplicación permite analizar el registro de estudiantes por:
 
     - 📊 **Registros**
+    - 👤 **Estudiantes registrados**
     - 📅 **Período de ingreso**
     - 📚 **Nivel de materia**
     - 📖 **Materia**
-    - 👤 **Estudiantes registrados**
     """
 )
 
