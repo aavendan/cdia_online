@@ -4,7 +4,14 @@
       "Skill(run)",
       "Skill(run:*)",
       "Bash(python -)",
-      "Bash(python -m py_compile pages/1_Registros.py pages/3_Nivel_de_Materia.py pages/4_Materia.py pages/2_Periodo_de_Ingreso.py)"
+      "Bash(python -m py_compile pages/1_Registros.py pages/3_Nivel_de_Materia.py pages/4_Materia.py pages/2_Periodo_de_Ingreso.py)",
+      "Bash(python -m py_compile utils.py pages/1_Registros.py pages/2_Periodo_de_Ingreso.py pages/3_Nivel_de_Materia.py pages/4_Materia.py)",
+      "Bash(python -m py_compile utils.py pages/2_Periodo_de_Ingreso.py pages/3_Nivel_de_Materia.py pages/4_Materia.py)",
+      "Bash(python -m py_compile utils.py)",
+      "Bash(python -m py_compile pages/1_Registros.py pages/2_Periodo_de_Ingreso.py pages/3_Nivel_de_Materia.py pages/4_Materia.py)",
+      "Bash(python -m py_compile pages/1_Registros.py)",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import pandas as pd; df = pd.read_excel\\('data/estudiantes_ingreso_enlinea.xlsx', engine='openpyxl'\\); df.columns = df.columns.str.strip\\(\\); print\\(df.columns.tolist\\(\\)\\); print\\(df.iloc[0]\\)\")"
     ]
   }
 }

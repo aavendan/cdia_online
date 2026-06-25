@@ -18,4 +18,5 @@ def cargar_ingreso():
     df.columns = df.columns.str.strip()
     df.rename(columns={df.columns[0]: "matricula"}, inplace=True)
     df["nombre"] = df["nombre"].str.strip().str.upper()
+    df = df[df["estado"].str.strip().str.upper() == "ADMISIONES"]
     return df

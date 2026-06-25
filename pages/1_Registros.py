@@ -47,6 +47,41 @@ with col_a:
     fig1.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Mediana: {por_periodo["Registros"].median():.1f}", line=dict(color="red", dash="dot"), showlegend=True))
     st.plotly_chart(fig1, width="stretch")
 
+    periodo_max = por_periodo.loc[por_periodo["Registros"].idxmax(), "Período"]
+    val_max = int(por_periodo["Registros"].max())
+    periodo_min = por_periodo.loc[por_periodo["Registros"].idxmin(), "Período"]
+    val_min = int(por_periodo["Registros"].min())
+    media = por_periodo["Registros"].mean()
+    mediana = por_periodo["Registros"].median()
+    sobre_promedio = (por_periodo["Registros"] >= media).sum()
+    total_p = len(por_periodo)
+
+    if media > mediana * 1.1:
+        tendencia = (
+            f"Aunque en promedio hay {media:.0f} registros por período, "
+            f"más de la mitad de los períodos tienen menos de {mediana:.0f} registros. "
+            f"Esto significa que uno o pocos períodos concentran una gran parte de la actividad."
+        )
+    elif mediana > media * 1.1:
+        tendencia = (
+            f"La mayoría de los períodos tiene una participación alta: "
+            f"más de la mitad supera los {mediana:.0f} registros, "
+            f"con un promedio de {media:.0f} registros por período."
+        )
+    else:
+        tendencia = (
+            f"La participación es bastante pareja entre períodos: "
+            f"el promedio es de {media:.0f} registros y la mitad de los períodos "
+            f"está cerca de ese valor ({mediana:.0f} registros)."
+        )
+
+    st.info(
+        f"* Los estudiantes que ingresaron en el **{periodo_max}** aparecen en la mayor (**{val_max}**) cantidad de registros. \n"
+        f"* Los estudiantes que ingresaron en el **{periodo_min}** aparecen en la menor (**{val_min}**) cantidad de registros. \n"
+        # f"* {tendencia} \n"
+        f"* En total, **{sobre_promedio} de {total_p} períodos** igualan o superan el promedio."
+    )
+
 with col_b:
     st.subheader("Registros por nivel de materias")
     por_nivel = df.groupby("nivel_materia")["cantidad_estudiantes"].sum().reset_index()
@@ -61,7 +96,36 @@ with col_b:
     fig2.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Mediana: {por_nivel["Registros"].median():.1f}", line=dict(color="red", dash="dot"), showlegend=True))
     st.plotly_chart(fig2, width="stretch")
 
-st.subheader("Top 10 materias con más registros")
+    nivel_max = por_nivel.loc[por_nivel["Registros"].idxmax(), "Nivel"]
+    val_max_n = int(por_nivel["Registros"].max())
+    nivel_min = por_nivel.loc[por_nivel["Registros"].idxmin(), "Nivel"]
+    val_min_n = int(por_nivel["Registros"].min())
+    media_n = por_nivel["Registros"].mean()
+    mediana_n = por_nivel["Registros"].median()
+    total_n = len(por_nivel)
+    sobre_prom_n = (por_nivel["Registros"] >= media_n).sum()
+    pct_max_n = int(val_max_n / por_nivel["Registros"].sum() * 100)
+
+    if media_n > mediana_n * 1.1:
+        tendencia_n = (
+            f"La carga no está repartida de forma pareja: "
+            f"unos pocos niveles concentran la mayor parte de los registros, "
+            f"mientras que otros tienen una participación notablemente menor."
+        )
+    else:
+        tendencia_n = (
+            f"La participación entre niveles es relativamente equilibrada, "
+            f"aunque siempre hay diferencias naturales entre unos y otros."
+        )
+
+    st.info(
+        f"* En el nivel **{nivel_max}** tiene la mayor (**{val_max_n}**) cantidad de registros. \n"
+        f"* En el nivel **{nivel_min}** tiene la menor (**{val_min_n}**) cantidad de registros. \n"
+        #f"* {tendencia_n} \n"
+        f"* En total, **{sobre_prom_n} de {total_n} niveles** igualan o superan el promedio."
+    )
+
+st.subheader("Las 10 materias con más registros")
 por_materia = df.groupby("nombre_materia")["cantidad_estudiantes"].sum().reset_index()
 por_materia.columns = ["Materia", "Registros"]
 por_materia = por_materia.sort_values("Registros", ascending=False).head(10)

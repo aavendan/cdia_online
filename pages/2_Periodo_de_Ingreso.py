@@ -76,6 +76,7 @@ if nivel_sel != "Todos":
 if materia_sel != "Todas":
     df_reg = df_reg[df_reg["Materia"] == materia_sel]
 
+
 col_a, col_b = st.columns(2)
 
 with col_a:
