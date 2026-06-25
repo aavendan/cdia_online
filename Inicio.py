@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🎓 Registro de Estudiantes CDIA")
+st.title("🎓 Registros PAO I 2026")
 st.subheader("Ciencia de Datos e Inteligencia Artificial - Modalidad en línea")
 
 st.markdown("---")
