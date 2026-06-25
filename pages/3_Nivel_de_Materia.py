@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from utils import cargar_datos
@@ -56,8 +57,10 @@ fig2 = px.bar(evolucion, x="Período", y="Registros",
               color_discrete_sequence=["#1f77b4"],
               labels={"Período": "Período de Ingreso"})
 fig2.update_layout(yaxis=dict(rangemode="tozero"))
-fig2.add_hline(y=evolucion["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
-fig2.add_hline(y=evolucion["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
+fig2.add_hline(y=evolucion["Registros"].mean(), line_dash="dash", line_color="orange")
+fig2.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Media: {evolucion["Registros"].mean():.1f}", line=dict(color="orange", dash="dash"), showlegend=True))
+fig2.add_hline(y=evolucion["Registros"].median(), line_dash="dot", line_color="red")
+fig2.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Mediana: {evolucion["Registros"].median():.1f}", line=dict(color="red", dash="dot"), showlegend=True))
 st.plotly_chart(fig2, width="stretch")
 
 st.subheader("Datos")

@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from utils import cargar_datos
@@ -39,9 +40,11 @@ with col_a:
     fig1 = px.bar(por_periodo, x="Período", y="Registros", color="Registros",
                   color_continuous_scale=[[0, "#b6d5a2"], [1, "#5c6b1a"]], text_auto=True,
                   labels={"Período": "Período de Ingreso"})
-    fig1.update_layout(showlegend=False, coloraxis_showscale=False)
-    fig1.add_hline(y=por_periodo["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
-    fig1.add_hline(y=por_periodo["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
+    fig1.update_layout(coloraxis_showscale=False)
+    fig1.add_hline(y=por_periodo["Registros"].mean(), line_dash="dash", line_color="orange")
+    fig1.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Media: {por_periodo["Registros"].mean():.1f}", line=dict(color="orange", dash="dash"), showlegend=True))
+    fig1.add_hline(y=por_periodo["Registros"].median(), line_dash="dot", line_color="red")
+    fig1.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Mediana: {por_periodo["Registros"].median():.1f}", line=dict(color="red", dash="dot"), showlegend=True))
     st.plotly_chart(fig1, width="stretch")
 
 with col_b:
@@ -51,9 +54,11 @@ with col_b:
     fig2 = px.bar(por_nivel, x="Nivel", y="Registros", color="Registros",
                   color_continuous_scale=[[0, "#a8d5a2"], [1, "#1a6b2f"]], text_auto=True,
                   labels={"Nivel": "Nivel de Materia"})
-    fig2.update_layout(showlegend=False, coloraxis_showscale=False)
-    fig2.add_hline(y=por_nivel["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
-    fig2.add_hline(y=por_nivel["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
+    fig2.update_layout(coloraxis_showscale=False)
+    fig2.add_hline(y=por_nivel["Registros"].mean(), line_dash="dash", line_color="orange")
+    fig2.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Media: {por_nivel["Registros"].mean():.1f}", line=dict(color="orange", dash="dash"), showlegend=True))
+    fig2.add_hline(y=por_nivel["Registros"].median(), line_dash="dot", line_color="red")
+    fig2.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Mediana: {por_nivel["Registros"].median():.1f}", line=dict(color="red", dash="dot"), showlegend=True))
     st.plotly_chart(fig2, width="stretch")
 
 st.subheader("Top 10 materias con más registros")
@@ -63,6 +68,8 @@ por_materia = por_materia.sort_values("Registros", ascending=False).head(10)
 fig3 = px.bar(por_materia, x="Registros", y="Materia", orientation="h",
               color="Registros", color_continuous_scale=[[0, "#809acb"], [1, "#090069"]], text_auto=True)
 fig3.update_layout(yaxis={"categoryorder": "total ascending"}, coloraxis_showscale=False)
-fig3.add_vline(x=por_materia["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
-fig3.add_vline(x=por_materia["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
+fig3.add_vline(x=por_materia["Registros"].mean(), line_dash="dash", line_color="orange")
+fig3.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Media: {por_materia["Registros"].mean():.1f}", line=dict(color="orange", dash="dash"), showlegend=True))
+fig3.add_vline(x=por_materia["Registros"].median(), line_dash="dot", line_color="red")
+fig3.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Mediana: {por_materia["Registros"].median():.1f}", line=dict(color="red", dash="dot"), showlegend=True))
 st.plotly_chart(fig3, width="stretch")

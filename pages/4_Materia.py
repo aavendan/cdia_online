@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from utils import cargar_datos
@@ -37,8 +38,10 @@ fig = px.bar(por_periodo, x="Período", y="Registros",
              color="Registros", color_continuous_scale=[[0, "#80cbc4"], [1, "#00695c"]],
              text_auto=True)
 fig.update_layout(coloraxis_showscale=False, yaxis=dict(rangemode="tozero"))
-fig.add_hline(y=por_periodo["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
-fig.add_hline(y=por_periodo["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
+fig.add_hline(y=por_periodo["Registros"].mean(), line_dash="dash", line_color="orange")
+fig.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Media: {por_periodo["Registros"].mean():.1f}", line=dict(color="orange", dash="dash"), showlegend=True))
+fig.add_hline(y=por_periodo["Registros"].median(), line_dash="dot", line_color="red")
+fig.add_trace(go.Scatter(x=[None], y=[None], mode="lines", name=f"Mediana: {por_periodo["Registros"].median():.1f}", line=dict(color="red", dash="dot"), showlegend=True))
 st.plotly_chart(fig, width="stretch")
 
 st.subheader("Estudiantes registrados por Período de Ingreso")
