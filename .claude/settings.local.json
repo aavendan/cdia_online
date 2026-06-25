@@ -3,7 +3,8 @@
     "allow": [
       "Skill(run)",
       "Skill(run:*)",
-      "Bash(python -)"
+      "Bash(python -)",
+      "Bash(python -m py_compile pages/1_Registros.py pages/3_Nivel_de_Materia.py pages/4_Materia.py pages/2_Periodo_de_Ingreso.py)"
     ]
   }
 }
