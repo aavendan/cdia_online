@@ -13,6 +13,15 @@ def cargar_datos():
     return df
 
 @st.cache_data
+def cargar_migrados():
+    df = pd.read_excel(INGRESO_PATH, engine="openpyxl")
+    df.columns = df.columns.str.strip()
+    df.rename(columns={df.columns[0]: "matricula"}, inplace=True)
+    df["nombre"] = df["nombre"].str.strip().str.upper()
+    df = df[df["estado"].str.strip().str.upper() == "STA"]
+    return df
+
+@st.cache_data
 def cargar_ingreso():
     df = pd.read_excel(INGRESO_PATH, engine="openpyxl")
     df.columns = df.columns.str.strip()

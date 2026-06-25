@@ -20,6 +20,8 @@ st.markdown(
     - 📅 **Período de ingreso**
     - 📚 **Nivel de materia**
     - 📖 **Materia**
+    - 🔄 **Homologados Grupal**
+    - 🔎 **Homologados Individual**
     """
 )
 
