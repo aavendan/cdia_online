@@ -56,6 +56,8 @@ fig2 = px.bar(evolucion, x="Período", y="Registros",
               color_discrete_sequence=["#1f77b4"],
               labels={"Período": "Período de Ingreso"})
 fig2.update_layout(yaxis=dict(rangemode="tozero"))
+fig2.add_hline(y=evolucion["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
+fig2.add_hline(y=evolucion["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
 st.plotly_chart(fig2, width="stretch")
 
 st.subheader("Datos")

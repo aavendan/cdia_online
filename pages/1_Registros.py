@@ -40,6 +40,8 @@ with col_a:
                   color_continuous_scale=[[0, "#b6d5a2"], [1, "#5c6b1a"]], text_auto=True,
                   labels={"Período": "Período de Ingreso"})
     fig1.update_layout(showlegend=False, coloraxis_showscale=False)
+    fig1.add_hline(y=por_periodo["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
+    fig1.add_hline(y=por_periodo["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
     st.plotly_chart(fig1, width="stretch")
 
 with col_b:
@@ -50,6 +52,8 @@ with col_b:
                   color_continuous_scale=[[0, "#a8d5a2"], [1, "#1a6b2f"]], text_auto=True,
                   labels={"Nivel": "Nivel de Materia"})
     fig2.update_layout(showlegend=False, coloraxis_showscale=False)
+    fig2.add_hline(y=por_nivel["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
+    fig2.add_hline(y=por_nivel["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
     st.plotly_chart(fig2, width="stretch")
 
 st.subheader("Top 10 materias con más registros")
@@ -59,4 +63,6 @@ por_materia = por_materia.sort_values("Registros", ascending=False).head(10)
 fig3 = px.bar(por_materia, x="Registros", y="Materia", orientation="h",
               color="Registros", color_continuous_scale=[[0, "#809acb"], [1, "#090069"]], text_auto=True)
 fig3.update_layout(yaxis={"categoryorder": "total ascending"}, coloraxis_showscale=False)
+fig3.add_vline(x=por_materia["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
+fig3.add_vline(x=por_materia["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
 st.plotly_chart(fig3, width="stretch")

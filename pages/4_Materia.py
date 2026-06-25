@@ -37,6 +37,8 @@ fig = px.bar(por_periodo, x="Período", y="Registros",
              color="Registros", color_continuous_scale=[[0, "#80cbc4"], [1, "#00695c"]],
              text_auto=True)
 fig.update_layout(coloraxis_showscale=False, yaxis=dict(rangemode="tozero"))
+fig.add_hline(y=por_periodo["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
+fig.add_hline(y=por_periodo["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
 st.plotly_chart(fig, width="stretch")
 
 st.subheader("Estudiantes registrados por Período de Ingreso")

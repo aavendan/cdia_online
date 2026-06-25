@@ -92,6 +92,8 @@ with col_a:
         coloraxis_showscale=False,
         yaxis=dict(rangemode="tozero"),
     )
+    fig1.add_hline(y=por_materia["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
+    fig1.add_hline(y=por_materia["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
     st.plotly_chart(fig1, width="stretch")
 
 with col_b:
@@ -103,6 +105,8 @@ with col_b:
         text_auto=True,
     )
     fig2.update_layout(coloraxis_showscale=False, yaxis=dict(rangemode="tozero"))
+    fig2.add_hline(y=por_nivel["Registros"].mean(), line_dash="dash", line_color="orange", annotation_text="Media", annotation_position="top right")
+    fig2.add_hline(y=por_nivel["Registros"].median(), line_dash="dot", line_color="red", annotation_text="Mediana", annotation_position="bottom right")
     st.plotly_chart(fig2, width="stretch")
 
 st.subheader("Datos")
