@@ -2,23 +2,10 @@ import streamlit as st
 import pandas as pd
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-from utils import cargar_datos
+from utils import cargar_datos, cargar_ingreso
 
 st.set_page_config(page_title="Sin Registro - CDIA", page_icon="🔍", layout="wide")
 st.title("🔍 Estudiantes Sin Registro")
-
-INGRESO_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-    "pao-i-2026", "data", "estudiantes_ingreso_enlinea.xlsx",
-)
-
-@st.cache_data
-def cargar_ingreso():
-    df = pd.read_excel(INGRESO_PATH, engine="openpyxl")
-    df.columns = df.columns.str.strip()
-    df.rename(columns={df.columns[0]: "matricula"}, inplace=True)
-    df["nombre"] = df["nombre"].str.strip().str.upper()
-    return df
 
 df = cargar_datos()
 df_ing = cargar_ingreso()
