@@ -25,4 +25,4 @@ st.markdown(
     """
 )
 
-st.info("Utilice el menú lateral para navegar entre las páginas.")
+# st.info("Utilice el menú lateral para navegar entre las páginas.")
