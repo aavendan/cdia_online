@@ -37,7 +37,8 @@ with col_a:
     por_periodo = df.groupby("periodo_label")["cantidad_estudiantes"].sum().reset_index()
     por_periodo.columns = ["Período", "Registros"]
     fig1 = px.bar(por_periodo, x="Período", y="Registros", color="Registros",
-                  color_continuous_scale=[[0, "#b6d5a2"], [1, "#5c6b1a"]], text_auto=True)
+                  color_continuous_scale=[[0, "#b6d5a2"], [1, "#5c6b1a"]], text_auto=True,
+                  labels={"Período": "Período de Ingreso"})
     fig1.update_layout(showlegend=False, coloraxis_showscale=False)
     st.plotly_chart(fig1, width="stretch")
 
@@ -46,7 +47,8 @@ with col_b:
     por_nivel = df.groupby("nivel_materia")["cantidad_estudiantes"].sum().reset_index()
     por_nivel.columns = ["Nivel", "Registros"]
     fig2 = px.bar(por_nivel, x="Nivel", y="Registros", color="Registros",
-                  color_continuous_scale=[[0, "#a8d5a2"], [1, "#1a6b2f"]], text_auto=True)
+                  color_continuous_scale=[[0, "#a8d5a2"], [1, "#1a6b2f"]], text_auto=True,
+                  labels={"Nivel": "Nivel de Materia"})
     fig2.update_layout(showlegend=False, coloraxis_showscale=False)
     st.plotly_chart(fig2, width="stretch")
 

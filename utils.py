@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import os
 
-DATA_PATH = os.path.join(os.path.dirname(__file__), "data/datos.xlsx")
+DATA_PATH = os.path.join(os.path.dirname(__file__), "data/registros.xlsx")
 INGRESO_PATH = os.path.join(os.path.dirname(__file__), "data/estudiantes_ingreso_enlinea.xlsx")
 
 @st.cache_data

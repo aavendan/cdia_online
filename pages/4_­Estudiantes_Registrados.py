@@ -86,7 +86,7 @@ if estudiante_sel != "Todos":
         hide_index=True,
     )
 else:
-    st.subheader("Tabla de inscripciones")
+    st.subheader("Datos")
     st.dataframe(
         df_view.sort_values(["Estudiante", "Nivel", "Materia"]),
         width="stretch",

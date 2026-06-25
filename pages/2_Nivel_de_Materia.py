@@ -27,7 +27,7 @@ col3.metric("Períodos involucrados", df_filtrado["periodo_label"].nunique())
 
 todos_periodos = sorted(df["periodo_label"].unique())
 
-st.subheader("Registros por materia y período")
+st.subheader("Registros por Materia y Período de Ingreso")
 pivot = df_filtrado.pivot_table(
     index="nombre_materia", columns="periodo_label",
     values="cantidad_estudiantes", aggfunc="sum", fill_value=0
@@ -38,12 +38,12 @@ fig = px.imshow(
     text_auto=True,
     color_continuous_scale="Blues",
     aspect="auto",
-    labels=dict(x="Período", y="Materia", color="Registros")
+    labels=dict(x="Período de Ingreso", y="Materia", color="Registros")
 )
 fig.update_layout(coloraxis_showscale=True)
 st.plotly_chart(fig, width="stretch")
 
-st.subheader("Registros por período")
+st.subheader("Registros por Período de Ingreso")
 evolucion = df_filtrado.groupby("periodo_label")["cantidad_estudiantes"].sum().reset_index()
 evolucion.columns = ["Período", "Registros"]
 evolucion = (
@@ -53,11 +53,12 @@ evolucion = (
 )
 evolucion["Registros"] = evolucion["Registros"].astype(int)
 fig2 = px.bar(evolucion, x="Período", y="Registros",
-              color_discrete_sequence=["#1f77b4"])
+              color_discrete_sequence=["#1f77b4"],
+              labels={"Período": "Período de Ingreso"})
 fig2.update_layout(yaxis=dict(rangemode="tozero"))
 st.plotly_chart(fig2, width="stretch")
 
-st.subheader("Registros")
+st.subheader("Datos")
 tabla = df_filtrado[["nivel_materia", "codigo_materia", "nombre_materia", "periodo_label", "cantidad_estudiantes"]].copy()
 tabla.columns = ["Nivel", "Código", "Materia", "Período", "Estudiantes"]
 st.dataframe(tabla.sort_values(["Materia", "Período"]), width="stretch", hide_index=True)
