@@ -12,7 +12,27 @@
       "Bash(python -m py_compile pages/1_Registros.py)",
       "Bash(python -c ' *)",
       "Bash(python -c \"import pandas as pd; df = pd.read_excel\\('data/estudiantes_ingreso_enlinea.xlsx', engine='openpyxl'\\); df.columns = df.columns.str.strip\\(\\); print\\(df.columns.tolist\\(\\)\\); print\\(df.iloc[0]\\)\")",
-      "Bash(python -c \"import pandas as pd; df = pd.read_excel\\('data/registros.xlsx', engine='openpyxl'\\); df.columns = df.columns.str.strip\\(\\); print\\(df.columns.tolist\\(\\)\\); print\\(df.head\\(3\\).to_string\\(\\)\\)\")"
+      "Bash(python -c \"import pandas as pd; df = pd.read_excel\\('data/registros.xlsx', engine='openpyxl'\\); df.columns = df.columns.str.strip\\(\\); print\\(df.columns.tolist\\(\\)\\); print\\(df.head\\(3\\).to_string\\(\\)\\)\")",
+      "Bash(python -c \"import pandas as pd; df = pd.read_excel\\('data/reporte_general_cdia.xlsx'\\); print\\(df.columns.tolist\\(\\)\\); print\\(df.head\\(2\\)\\)\")",
+      "Bash(python -c \"import pandas as pd; df = pd.read_excel\\('data/registros.xlsx'\\); print\\(df.columns.tolist\\(\\)\\); print\\(df.head\\(2\\)\\)\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -c \"import pandas\")",
+      "Bash(pip show *)",
+      "Bash(python -c \"import pandas, openpyxl; print\\('ok'\\)\")",
+      "Bash(python3 -c \"print\\(open\\('/tmp/out.txt',encoding='utf-8'\\).read\\(\\)\\)\")",
+      "Read(//tmp/**)",
+      "Bash(iconv -f utf-8 -t utf-8)",
+      "Bash(where streamlit *)",
+      "Bash(where python *)",
+      "Bash(python -c \"import streamlit; print\\(streamlit.__file__\\)\")",
+      "Bash(python3)",
+      "Bash(rm -f dup_check.txt)",
+      "Bash(python)",
+      "Bash(rm -f verify.txt)",
+      "Bash(rm -f inspect.txt)",
+      "Bash(rm -f dist.txt)",
+      "Bash(python -c \"import statsmodels; print\\(statsmodels.__version__\\)\")",
+      "Bash(python -c \"import sklearn; print\\(sklearn.__version__\\)\")"
     ]
   }
 }

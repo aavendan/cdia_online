@@ -10,6 +10,9 @@ pg = st.navigation({
     "General": [
         st.Page("pages/2_Reporte_General.py", title="Reporte General", icon="📋"),
     ],
+    "Avance en la Malla": [
+        st.Page("pages/11_Materias_Pendientes.py", title="Materias Pendientes", icon="📌"),
+    ],
     "Estudiantes Registrados": [
         st.Page("pages/3_Estudiantes_Registrados.py", title="Resumen", icon="👤"),
         st.Page("pages/1_Registros.py", title="Por Registros", icon="📊"),
@@ -24,6 +27,7 @@ pg = st.navigation({
     "Estudiantes Sin Registros": [
         st.Page("pages/9_Estudiantes_Sin_Registros.py", title="Resumen", icon="❌"),
     ],
+    
 })
 
 pg.run()
