@@ -142,7 +142,7 @@ with col_f:
         labels={"nivel": "Nivel", "materias_pendientes": "Materias Pendientes", "modalidad": "Modalidad"},
         title="Distribución de Materias Pendientes por Estudiante según Nivel y Modalidad",
     )
-    fig_box_nivel.update_layout(legend_title_text="")
+    fig_box_nivel.update_layout(legend_title_text="", yaxis=dict(rangemode="tozero"))
     st.plotly_chart(fig_box_nivel, width="stretch")
 
 st.markdown("---")
