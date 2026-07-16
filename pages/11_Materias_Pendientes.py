@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from utils import cargar_materias_pendientes
 
 st.set_page_config(page_title="Materias Pendientes - CDIA", page_icon="📚", layout="wide")
-st.title("Avance en el malla")
+st.title("Comparativo de avance en el malla para estudiantes de la cohorte PAO II 2024 - modalidad híbrida y en línea")
 
 df = cargar_materias_pendientes()
 
